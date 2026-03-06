@@ -1,20 +1,18 @@
 //Game with a Player & BOT
 //write a function that randomly returns rock, paper or scissors 
+const humanSelection = getHumanChoice()
+const computerSelection = getComputerChoice()
 
-function getComputerChoice(){
-    let choice = Math.random()
-    if ( choice <= 0.33){
+function getComputerChoice(choice){
+    choice = Math.floor(Math.random() * 3)
+    if ( choice == 0){
         return "rock"
-    }else if(choice <=0.66){
+    }else if(choice == 1){
         return "paper"
-    }else if(choice > 0.66){
-        return "scissors"
     }else{
-        return "Choose between Rock, Paper, Scissors"
+        return "scissors"
     }
 }
-
-console.log(getComputerChoice())
 
 //take user choice and returns it
 
@@ -22,7 +20,6 @@ function getHumanChoice(){
     return window.prompt()
 }
 
-console.log(getHumanChoice())
 
 //keep the score
 
@@ -34,14 +31,18 @@ let computerScore = 0
 */
 function playRound(getComputerChoice, getHumanChoice){
     //play single round
-    if(getComputerChoice == "rock" && getHumanChoice == "paper" || getComputerChoice == "scissors" && getHumanChoice == "rock"){
+    if(getComputerChoice === "rock" && getHumanChoice === "paper"){
         return humanScore += 1
-    }else if (getComputerChoice == "paper" && getHumanChoice == "rock" || getComputerChoice == "rock" && getHumanChoice == "scissors"){
+    } else if(getComputerChoice === "scissors" && getHumanChoice === "rock"){
+        return humanScore += 1
+    }else if (getComputerChoice === "paper" && getHumanChoice === "rock" || getComputerChoice === "rock" && getHumanChoice === "scissors"){
         return computerScore += 1
-    }else if(getComputerChoice == getHumanChoice){
+    }else if(getComputerChoice === getHumanChoice){
         return "Tie!!"
     }
-
 }
-playRound()
+
+
+playRound(humanSelection, computerSelection)
 console.log(humanScore)
+console.log(computerScore)
